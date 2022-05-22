@@ -1,0 +1,12 @@
+X:\DoAnQuanLy\DoAnQuanLyChoThueOto\bin\Debug\DoAnQuanLyChoThueOto.exe.config
+X:\DoAnQuanLy\DoAnQuanLyChoThueOto\bin\Debug\DoAnQuanLyChoThueOto.exe
+X:\DoAnQuanLy\DoAnQuanLyChoThueOto\bin\Debug\DoAnQuanLyChoThueOto.pdb
+X:\DoAnQuanLy\DoAnQuanLyChoThueOto\obj\Debug\DoAnQuanLyChoThueOto.csproj.AssemblyReference.cache
+X:\DoAnQuanLy\DoAnQuanLyChoThueOto\obj\Debug\DoAnQuanLyChoThueOto.frmDangNhap.resources
+X:\DoAnQuanLy\DoAnQuanLyChoThueOto\obj\Debug\DoAnQuanLyChoThueOto.Properties.Resources.resources
+X:\DoAnQuanLy\DoAnQuanLyChoThueOto\obj\Debug\DoAnQuanLyChoThueOto.csproj.GenerateResource.cache
+X:\DoAnQuanLy\DoAnQuanLyChoThueOto\obj\Debug\DoAnQuanLyChoThueOto.csproj.CoreCompileInputs.cache
+X:\DoAnQuanLy\DoAnQuanLyChoThueOto\obj\Debug\DoAnQuanLyChoThueOto.exe
+X:\DoAnQuanLy\DoAnQuanLyChoThueOto\obj\Debug\DoAnQuanLyChoThueOto.pdb
+X:\DoAnQuanLy\DoAnQuanLyChoThueOto\obj\Debug\DoAnQuanLyChoThueOto.frmTrangChu.resources
+X:\DoAnQuanLy\DoAnQuanLyChoThueOto\obj\Debug\DoAnQuanLyChoThueOto.frmThemKhachHang.resources
