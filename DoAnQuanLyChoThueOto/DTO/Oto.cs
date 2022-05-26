@@ -43,6 +43,7 @@ namespace DoAnQuanLyChoThueOto.DTO
             string[] s = { this.MaXe,this.TenXe,this.HangXe,this.BienSoXe,this.SoChoNgoi.ToString(),this.TrangThai.ToString()=="1"?"Thuê":"Trống" };
             return s;
        }
+        
         public override string ToString()// lấy chuỗi để cho là button text bên frmtrangchu 
         {
             string s = this.TrangThai == 1 ? "Thuê" : "Trống";

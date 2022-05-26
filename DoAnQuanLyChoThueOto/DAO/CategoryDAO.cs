@@ -37,6 +37,30 @@ namespace DoAnQuanLyChoThueOto.DAO
             }
             return ds;
         }
+        public List<string> GetChoNgoi()
+        {
+            List<string> lschongoi = new List<string>();
+            DataTable data = DAO.DataProvider.Instance.ExecuteQuery($"select  DISTINCT SoChoNgoi from XE");
+            List<DTO.Oto> otos = new List<DTO.Oto>();
+            foreach (DataRow item in data.Rows)
+            {
+                lschongoi.Add(item["SoChoNgoi"].ToString());
+                
+            }
+            return lschongoi;
+        }
+        public List<string> GetHangXe()
+        {
+            List<string> lshangxe = new List<string>();
+            DataTable data = DAO.DataProvider.Instance.ExecuteQuery($"select  DISTINCT HangXe from XE");
+            List<DTO.Oto> otos = new List<DTO.Oto>();
+            foreach (DataRow item in data.Rows)
+            {
+                lshangxe.Add(item["HangXe"].ToString());
+
+            }
+            return lshangxe;
+        }
 
     }
 }

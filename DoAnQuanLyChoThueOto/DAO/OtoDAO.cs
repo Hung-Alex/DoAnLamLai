@@ -39,5 +39,54 @@ namespace DoAnQuanLyChoThueOto.DAO
             }
             return otos;
         }
+        public List<DTO.Oto> GetListOtoSoChoNgoi(string sochongoi)
+        {
+            DataTable data = DAO.DataProvider.Instance.ExecuteQuery($"select * from XE where SoChoNgoi='{sochongoi}'");
+            List<DTO.Oto> otos = new List<DTO.Oto>();
+            foreach (DataRow item in data.Rows)
+            {
+                DTO.Oto itemOto = new DTO.Oto(item);
+                otos.Add(itemOto);
+            }
+            return otos;
+        }
+        public List<DTO.Oto> GetListOtoHangXe(string hangxe)
+        {
+            DataTable data = DAO.DataProvider.Instance.ExecuteQuery($"select * from XE where HangXe=N'{hangxe}'");
+            List<DTO.Oto> otos = new List<DTO.Oto>();
+            foreach (DataRow item in data.Rows)
+            {
+                DTO.Oto itemOto = new DTO.Oto(item);
+                otos.Add(itemOto);
+            }
+            return otos;
+        }
+        public List<DTO.Oto> GetListOtoTenXe(string tenxe)
+        {
+            DataTable data = DAO.DataProvider.Instance.ExecuteQuery($"select * from XE where TenXe like N'%{tenxe}%'");
+            List<DTO.Oto> otos = new List<DTO.Oto>();
+            foreach (DataRow item in data.Rows)
+            {
+                DTO.Oto itemOto = new DTO.Oto(item);
+                otos.Add(itemOto);
+            }
+            return otos;
+        }
+        public List<DTO.Oto> GetListOtoMaHopDong(string mahopdong)
+        {
+            DataTable data = DAO.DataProvider.Instance.ExecuteQuery($"select a.MaXe,a.TenXe,a.HangXe,a.BienSoXe,a.SoChoNgoi,a.TrangThai from XE A,CHITIETTHUEXE B where a.MaXe=b.MaXe and b.MaHopDong='{mahopdong}'");
+            List<DTO.Oto> otos = new List<DTO.Oto>();
+            foreach (DataRow item in data.Rows)
+            {
+                DTO.Oto itemOto = new DTO.Oto(item);
+                otos.Add(itemOto);
+            }
+            return otos;
+        }
+        public int UpdateOtoTrangThai(string maxe)
+        {
+            return DAO.DataProvider.Instance.ExecuteNonQuery($"update XE set TrangThai = 0 where MaXe = '{maxe}'");
+        }
+
     }
 }

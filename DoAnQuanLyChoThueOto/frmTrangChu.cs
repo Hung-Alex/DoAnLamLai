@@ -14,11 +14,13 @@ namespace DoAnQuanLyChoThueOto
 {
     public partial class frmTrangChu : Form
     {
+       
         public frmTrangChu()
         {
             InitializeComponent();
-            loadOto();
-            
+           
+
+
         }
 
 
@@ -68,14 +70,7 @@ namespace DoAnQuanLyChoThueOto
         }
 
 
-        private void lvDanhSachXeThue_SelectedIndexChanged(object sender, EventArgs e)// click vào item trong lvdanhsachxethue thì xóa item đó
-        {
-            if (lvDanhSachXeThue.SelectedItems.Count > 0)
-            {
-                lvDanhSachXeThue.Items.RemoveAt(lvDanhSachXeThue.SelectedItems[0].Index);
-            }
-
-        }
+       
         private void btnHuy_Click(object sender, EventArgs e)
         {
             ResetThongTin();
@@ -83,7 +78,7 @@ namespace DoAnQuanLyChoThueOto
 
         private void btnTatCa_Click(object sender, EventArgs e)
         {
-            loadOto();
+            loadOto(DAO.OtoDAO.Instance.GetListOto());
         }
 
         #endregion
@@ -98,10 +93,10 @@ namespace DoAnQuanLyChoThueOto
             cbTenKhachHang.Text = "";
             lvDanhSachXeThue.Items.Clear();
         }
-        void loadOto()
+        void loadOto(List<Oto> oto)
         {
             flpOto.Controls.Clear();
-            List<Oto> oto = OtoDAO.Instance.GetListOto();
+           
             foreach (Oto item in oto)
             {
                 Button itemOto = new Button();
@@ -128,7 +123,15 @@ namespace DoAnQuanLyChoThueOto
         }
 
 
-
+        List<string> GetMaXeListView()
+        {
+            List<string> lsmaxe = new List<string>();
+            foreach (ListViewItem item in lvDanhSachXeThue.Items)
+            {
+                lsmaxe.Add((item.Tag as Oto).MaXe);
+            }
+            return lsmaxe;
+        }
 
 
         #endregion
@@ -148,6 +151,102 @@ namespace DoAnQuanLyChoThueOto
             {
                 MessageBox.Show("vui lòng chọn khách hàng để xem");
             }
+        }
+
+        private void btnTaoHD_Click(object sender, EventArgs e)
+        {
+            if (lvDanhSachXeThue.Items.Count<=0)
+            {
+                MessageBox.Show("Vui Lòng Chọn xe muốn thuê");
+            }
+            else
+            {
+                DateTime ngaythue = dtpNgayThue.Value;
+                DateTime ngaytra = dtpNgayDuKienTra.Value;
+
+                string makh = (cbTenKhachHang.SelectedItem as KhachHang).MaKH;
+                 string mahopdong = DAO.DataProvider.Instance.ExecuteScalar(@"select dbo.ufn_SinhMaHopDong()").ToString();
+                if (HopDongDAO.Instance.InsertHopDong(mahopdong,makh,int.Parse(txtTienCoc.Text),int.Parse(txtTienThue.Text))>0)
+                {
+                    List<string> lsxe = GetMaXeListView();
+                    foreach (string item in lsxe)
+                    {
+                        HopDongDAO.Instance.InsertChiTietHopDong(mahopdong, item, ngaythue, ngaytra);
+                    }
+                    MessageBox.Show("Success");
+                    loadOto(DAO.OtoDAO.Instance.GetListOto());
+                    lvDanhSachXeThue.Items.Clear();
+                }
+                else
+                {
+                    MessageBox.Show("False");
+
+                }
+
+            }
+        }
+
+        private void xóaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in lvDanhSachXeThue.Items)
+            {
+                if (item.Checked)
+                {
+                    lvDanhSachXeThue.Items.RemoveAt(item.Index);
+                }
+            }
+        }
+
+        private void cbSoChoNgoi_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox chongoi = sender as ComboBox;
+            loadOto(OtoDAO.Instance.GetListOtoSoChoNgoi(chongoi.SelectedItem.ToString()));
+            lbSLChoNgoi.Text = flpOto.Controls.Count.ToString();
+        }
+        void LoadSoChoNgoi()
+        {
+            List<string> sochongoi = CategoryDAO.Instance.GetChoNgoi();
+            cbSoChoNgoi.DataSource = sochongoi;
+          
+        }
+        void LoadHangXe()
+        {
+            List<string> hangxe = CategoryDAO.Instance.GetHangXe();
+            cbHangXe.DataSource = hangxe;
+
+        }
+
+        private void frmTrangChu_Load(object sender, EventArgs e)
+        {
+            loadOto(DAO.OtoDAO.Instance.GetListOto());
+            LoadHangXe();
+            LoadSoChoNgoi();
+        }
+
+        private void cbHangXe_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox hangxe = sender as ComboBox;
+            loadOto(OtoDAO.Instance.GetListOtoHangXe(hangxe.SelectedItem.ToString()));
+            lbSLHangXe.Text = flpOto.Controls.Count.ToString();
+        }
+
+        private void txtTenXe_TextChanged(object sender, EventArgs e)
+        {
+            if(string.IsNullOrEmpty(txtTenXe.Text.Trim()))
+            {
+                loadOto(DAO.OtoDAO.Instance.GetListOto()) ;
+            }
+            else
+            {
+                loadOto(OtoDAO.Instance.GetListOtoTenXe(txtTenXe.Text.Trim()));
+            }
+        }
+
+        private void hơpĐồngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmHopDong f = new frmHopDong();
+            
+            f.ShowDialog(); 
         }
     }
 }

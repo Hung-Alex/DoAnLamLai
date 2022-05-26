@@ -10,3 +10,4 @@ X:\DoAnQuanLy\DoAnQuanLyChoThueOto\obj\Debug\DoAnQuanLyChoThueOto.exe
 X:\DoAnQuanLy\DoAnQuanLyChoThueOto\obj\Debug\DoAnQuanLyChoThueOto.pdb
 X:\DoAnQuanLy\DoAnQuanLyChoThueOto\obj\Debug\DoAnQuanLyChoThueOto.frmTrangChu.resources
 X:\DoAnQuanLy\DoAnQuanLyChoThueOto\obj\Debug\DoAnQuanLyChoThueOto.frmThemKhachHang.resources
+X:\DoAnQuanLy\DoAnQuanLyChoThueOto\obj\Debug\DoAnQuanLyChoThueOto.frmHopDong.resources
