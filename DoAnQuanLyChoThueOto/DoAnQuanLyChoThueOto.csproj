@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\AccountDAO.cs" />
     <Compile Include="DAO\CategoryDAO.cs" />
     <Compile Include="DAO\DataProvider.cs" />
     <Compile Include="DAO\HoaDonDAO.cs" />
@@ -56,17 +57,35 @@
     <Compile Include="DTO\HopDong.cs" />
     <Compile Include="DTO\KhachHang.cs" />
     <Compile Include="DTO\Oto.cs" />
+    <Compile Include="frmChonXe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmChonXe.Designer.cs">
+      <DependentUpon>frmChonXe.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDangNhap.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmDangNhap.Designer.cs">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmDoanhThu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDoanhThu.Designer.cs">
+      <DependentUpon>frmDoanhThu.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmHopDong.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmHopDong.Designer.cs">
       <DependentUpon>frmHopDong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmOto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOto.Designer.cs">
+      <DependentUpon>frmOto.cs</DependentUpon>
     </Compile>
     <Compile Include="frmThemKhachHang.cs">
       <SubType>Form</SubType>
@@ -82,11 +101,20 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmChonXe.resx">
+      <DependentUpon>frmChonXe.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmDangNhap.resx">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmDoanhThu.resx">
+      <DependentUpon>frmDoanhThu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmHopDong.resx">
       <DependentUpon>frmHopDong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOto.resx">
+      <DependentUpon>frmOto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmThemKhachHang.resx">
       <DependentUpon>frmThemKhachHang.cs</DependentUpon>

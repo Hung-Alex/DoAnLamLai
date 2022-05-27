@@ -32,17 +32,10 @@ namespace DoAnQuanLyChoThueOto
             this.components = new System.ComponentModel.Container();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.splitTrangChu = new System.Windows.Forms.SplitContainer();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.statusTenDangNhap = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.statusTenHienThi = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.statusQuyen = new System.Windows.Forms.ToolStripStatusLabel();
+            this.grDSOTO = new System.Windows.Forms.GroupBox();
             this.btnTatCa = new System.Windows.Forms.Button();
             this.flpOto = new System.Windows.Forms.FlowLayoutPanel();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.grLoc = new System.Windows.Forms.GroupBox();
             this.lbSLHangXe = new System.Windows.Forms.Label();
             this.lbSLChoNgoi = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -51,10 +44,10 @@ namespace DoAnQuanLyChoThueOto
             this.cbSoChoNgoi = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.grTimKiem = new System.Windows.Forms.GroupBox();
             this.txtTenXe = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.grHopDong = new System.Windows.Forms.GroupBox();
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnTaoHD = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -93,17 +86,16 @@ namespace DoAnQuanLyChoThueOto
             this.quảnLýToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hơpĐồngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.otoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.kháchHàngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fontDialog1 = new System.Windows.Forms.FontDialog();
             this.toolStripContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitTrangChu)).BeginInit();
             this.splitTrangChu.Panel1.SuspendLayout();
             this.splitTrangChu.Panel2.SuspendLayout();
             this.splitTrangChu.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.grDSOTO.SuspendLayout();
+            this.grLoc.SuspendLayout();
+            this.grTimKiem.SuspendLayout();
+            this.grHopDong.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.pnThongtin.SuspendLayout();
@@ -129,80 +121,27 @@ namespace DoAnQuanLyChoThueOto
             // 
             // splitTrangChu.Panel1
             // 
-            this.splitTrangChu.Panel1.Controls.Add(this.groupBox1);
+            this.splitTrangChu.Panel1.Controls.Add(this.grDSOTO);
             // 
             // splitTrangChu.Panel2
             // 
-            this.splitTrangChu.Panel2.Controls.Add(this.groupBox2);
+            this.splitTrangChu.Panel2.Controls.Add(this.grHopDong);
             this.splitTrangChu.Size = new System.Drawing.Size(1331, 754);
             this.splitTrangChu.SplitterDistance = 695;
             this.splitTrangChu.TabIndex = 1;
             // 
-            // groupBox1
+            // grDSOTO
             // 
-            this.groupBox1.Controls.Add(this.statusStrip1);
-            this.groupBox1.Controls.Add(this.btnTatCa);
-            this.groupBox1.Controls.Add(this.flpOto);
-            this.groupBox1.Controls.Add(this.groupBox5);
-            this.groupBox1.Controls.Add(this.groupBox4);
-            this.groupBox1.Location = new System.Drawing.Point(-12, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(708, 780);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Danh Sách Oto";
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1,
-            this.statusTenDangNhap,
-            this.toolStripStatusLabel2,
-            this.statusTenHienThi,
-            this.toolStripStatusLabel4,
-            this.statusQuyen});
-            this.statusStrip1.Location = new System.Drawing.Point(3, 751);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(702, 26);
-            this.statusStrip1.TabIndex = 16;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(112, 20);
-            this.toolStripStatusLabel1.Text = "Tên Đăng Nhập";
-            // 
-            // statusTenDangNhap
-            // 
-            this.statusTenDangNhap.Name = "statusTenDangNhap";
-            this.statusTenDangNhap.Size = new System.Drawing.Size(42, 20);
-            this.statusTenDangNhap.Text = "hung";
-            // 
-            // toolStripStatusLabel2
-            // 
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(91, 20);
-            this.toolStripStatusLabel2.Text = "Tên Hiển Thị";
-            // 
-            // statusTenHienThi
-            // 
-            this.statusTenHienThi.Name = "statusTenHienThi";
-            this.statusTenHienThi.Size = new System.Drawing.Size(127, 20);
-            this.statusTenHienThi.Text = "Phạm Ngọc Hưng";
-            // 
-            // toolStripStatusLabel4
-            // 
-            this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
-            this.toolStripStatusLabel4.Size = new System.Drawing.Size(51, 20);
-            this.toolStripStatusLabel4.Text = "Quyền";
-            // 
-            // statusQuyen
-            // 
-            this.statusQuyen.Name = "statusQuyen";
-            this.statusQuyen.Size = new System.Drawing.Size(53, 20);
-            this.statusQuyen.Text = "Admin";
+            this.grDSOTO.Controls.Add(this.btnTatCa);
+            this.grDSOTO.Controls.Add(this.flpOto);
+            this.grDSOTO.Controls.Add(this.grLoc);
+            this.grDSOTO.Controls.Add(this.grTimKiem);
+            this.grDSOTO.Location = new System.Drawing.Point(-12, 0);
+            this.grDSOTO.Name = "grDSOTO";
+            this.grDSOTO.Size = new System.Drawing.Size(708, 780);
+            this.grDSOTO.TabIndex = 0;
+            this.grDSOTO.TabStop = false;
+            this.grDSOTO.Text = "Danh Sách Oto";
             // 
             // btnTatCa
             // 
@@ -222,22 +161,22 @@ namespace DoAnQuanLyChoThueOto
             this.flpOto.Size = new System.Drawing.Size(683, 438);
             this.flpOto.TabIndex = 2;
             // 
-            // groupBox5
+            // grLoc
             // 
-            this.groupBox5.Controls.Add(this.lbSLHangXe);
-            this.groupBox5.Controls.Add(this.lbSLChoNgoi);
-            this.groupBox5.Controls.Add(this.label10);
-            this.groupBox5.Controls.Add(this.label9);
-            this.groupBox5.Controls.Add(this.cbHangXe);
-            this.groupBox5.Controls.Add(this.cbSoChoNgoi);
-            this.groupBox5.Controls.Add(this.label8);
-            this.groupBox5.Controls.Add(this.label6);
-            this.groupBox5.Location = new System.Drawing.Point(7, 125);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(683, 105);
-            this.groupBox5.TabIndex = 1;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Lọc";
+            this.grLoc.Controls.Add(this.lbSLHangXe);
+            this.grLoc.Controls.Add(this.lbSLChoNgoi);
+            this.grLoc.Controls.Add(this.label10);
+            this.grLoc.Controls.Add(this.label9);
+            this.grLoc.Controls.Add(this.cbHangXe);
+            this.grLoc.Controls.Add(this.cbSoChoNgoi);
+            this.grLoc.Controls.Add(this.label8);
+            this.grLoc.Controls.Add(this.label6);
+            this.grLoc.Location = new System.Drawing.Point(7, 125);
+            this.grLoc.Name = "grLoc";
+            this.grLoc.Size = new System.Drawing.Size(683, 105);
+            this.grLoc.TabIndex = 1;
+            this.grLoc.TabStop = false;
+            this.grLoc.Text = "Lọc";
             // 
             // lbSLHangXe
             // 
@@ -309,16 +248,16 @@ namespace DoAnQuanLyChoThueOto
             this.label6.TabIndex = 17;
             this.label6.Text = "Số Chỗ Ngồi";
             // 
-            // groupBox4
+            // grTimKiem
             // 
-            this.groupBox4.Controls.Add(this.txtTenXe);
-            this.groupBox4.Controls.Add(this.label7);
-            this.groupBox4.Location = new System.Drawing.Point(7, 36);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(683, 83);
-            this.groupBox4.TabIndex = 0;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Tìm Kiếm";
+            this.grTimKiem.Controls.Add(this.txtTenXe);
+            this.grTimKiem.Controls.Add(this.label7);
+            this.grTimKiem.Location = new System.Drawing.Point(7, 36);
+            this.grTimKiem.Name = "grTimKiem";
+            this.grTimKiem.Size = new System.Drawing.Size(683, 83);
+            this.grTimKiem.TabIndex = 0;
+            this.grTimKiem.TabStop = false;
+            this.grTimKiem.Text = "Tìm Kiếm";
             // 
             // txtTenXe
             // 
@@ -337,18 +276,18 @@ namespace DoAnQuanLyChoThueOto
             this.label7.TabIndex = 16;
             this.label7.Text = "Tên Xe";
             // 
-            // groupBox2
+            // grHopDong
             // 
-            this.groupBox2.Controls.Add(this.btnHuy);
-            this.groupBox2.Controls.Add(this.btnTaoHD);
-            this.groupBox2.Controls.Add(this.groupBox3);
-            this.groupBox2.Controls.Add(this.pnThongtin);
-            this.groupBox2.Location = new System.Drawing.Point(3, 3);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(620, 777);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Hợp Đồng";
+            this.grHopDong.Controls.Add(this.btnHuy);
+            this.grHopDong.Controls.Add(this.btnTaoHD);
+            this.grHopDong.Controls.Add(this.groupBox3);
+            this.grHopDong.Controls.Add(this.pnThongtin);
+            this.grHopDong.Location = new System.Drawing.Point(3, 3);
+            this.grHopDong.Name = "grHopDong";
+            this.grHopDong.Size = new System.Drawing.Size(620, 777);
+            this.grHopDong.TabIndex = 1;
+            this.grHopDong.TabStop = false;
+            this.grHopDong.Text = "Hợp Đồng";
             // 
             // btnHuy
             // 
@@ -594,7 +533,7 @@ namespace DoAnQuanLyChoThueOto
             this.quảnLýToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1343, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1371, 28);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -610,13 +549,14 @@ namespace DoAnQuanLyChoThueOto
             // doanhThuToolStripMenuItem
             // 
             this.doanhThuToolStripMenuItem.Name = "doanhThuToolStripMenuItem";
-            this.doanhThuToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
+            this.doanhThuToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.doanhThuToolStripMenuItem.Text = "Doanh Thu";
+            this.doanhThuToolStripMenuItem.Click += new System.EventHandler(this.doanhThuToolStripMenuItem_Click);
             // 
             // tàiKhoảnToolStripMenuItem
             // 
             this.tàiKhoảnToolStripMenuItem.Name = "tàiKhoảnToolStripMenuItem";
-            this.tàiKhoảnToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
+            this.tàiKhoảnToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.tàiKhoảnToolStripMenuItem.Text = "Tài Khoản";
             // 
             // càiĐặtToolStripMenuItem
@@ -632,55 +572,51 @@ namespace DoAnQuanLyChoThueOto
             // fontToolStripMenuItem
             // 
             this.fontToolStripMenuItem.Name = "fontToolStripMenuItem";
-            this.fontToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
+            this.fontToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.fontToolStripMenuItem.Text = "Font";
+            this.fontToolStripMenuItem.Click += new System.EventHandler(this.fontToolStripMenuItem_Click);
             // 
             // colorToolStripMenuItem
             // 
             this.colorToolStripMenuItem.Name = "colorToolStripMenuItem";
-            this.colorToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
+            this.colorToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.colorToolStripMenuItem.Text = "Color";
             // 
             // đăngXuấtToolStripMenuItem
             // 
             this.đăngXuấtToolStripMenuItem.Name = "đăngXuấtToolStripMenuItem";
-            this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
+            this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.đăngXuấtToolStripMenuItem.Text = "Đăng Xuất";
+            this.đăngXuấtToolStripMenuItem.Click += new System.EventHandler(this.đăngXuấtToolStripMenuItem_Click);
             // 
             // quảnLýToolStripMenuItem
             // 
             this.quảnLýToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.hơpĐồngToolStripMenuItem,
-            this.otoToolStripMenuItem,
-            this.kháchHàngToolStripMenuItem});
+            this.otoToolStripMenuItem});
             this.quảnLýToolStripMenuItem.Name = "quảnLýToolStripMenuItem";
-            this.quảnLýToolStripMenuItem.Size = new System.Drawing.Size(75, 24);
+            this.quảnLýToolStripMenuItem.Size = new System.Drawing.Size(75, 26);
             this.quảnLýToolStripMenuItem.Text = "Quản Lý";
             // 
             // hơpĐồngToolStripMenuItem
             // 
             this.hơpĐồngToolStripMenuItem.Name = "hơpĐồngToolStripMenuItem";
-            this.hơpĐồngToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
+            this.hơpĐồngToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.hơpĐồngToolStripMenuItem.Text = "Hơp Đồng";
             this.hơpĐồngToolStripMenuItem.Click += new System.EventHandler(this.hơpĐồngToolStripMenuItem_Click);
             // 
             // otoToolStripMenuItem
             // 
             this.otoToolStripMenuItem.Name = "otoToolStripMenuItem";
-            this.otoToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
+            this.otoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.otoToolStripMenuItem.Text = "Oto";
-            // 
-            // kháchHàngToolStripMenuItem
-            // 
-            this.kháchHàngToolStripMenuItem.Name = "kháchHàngToolStripMenuItem";
-            this.kháchHàngToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
-            this.kháchHàngToolStripMenuItem.Text = "Khách Hàng";
+            this.otoToolStripMenuItem.Click += new System.EventHandler(this.otoToolStripMenuItem_Click);
             // 
             // frmTrangChu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1343, 784);
+            this.ClientSize = new System.Drawing.Size(1371, 789);
             this.Controls.Add(this.splitTrangChu);
             this.Controls.Add(this.toolStripContainer1);
             this.Controls.Add(this.menuStrip1);
@@ -693,15 +629,12 @@ namespace DoAnQuanLyChoThueOto
             this.splitTrangChu.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitTrangChu)).EndInit();
             this.splitTrangChu.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
+            this.grDSOTO.ResumeLayout(false);
+            this.grLoc.ResumeLayout(false);
+            this.grLoc.PerformLayout();
+            this.grTimKiem.ResumeLayout(false);
+            this.grTimKiem.PerformLayout();
+            this.grHopDong.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
             this.pnThongtin.ResumeLayout(false);
@@ -717,8 +650,8 @@ namespace DoAnQuanLyChoThueOto
 
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
         private System.Windows.Forms.SplitContainer splitTrangChu;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox grDSOTO;
+        private System.Windows.Forms.GroupBox grHopDong;
         private System.Windows.Forms.Panel pnThongtin;
         private System.Windows.Forms.Label label;
         private System.Windows.Forms.Button btnXemThongTin;
@@ -738,8 +671,8 @@ namespace DoAnQuanLyChoThueOto
         private System.Windows.Forms.Button btnHuy;
         private System.Windows.Forms.Button btnTaoHD;
         private System.Windows.Forms.ComboBox cbTenKhachHang;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox grLoc;
+        private System.Windows.Forms.GroupBox grTimKiem;
         private System.Windows.Forms.TextBox txtTenXe;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lbSLHangXe;
@@ -752,13 +685,6 @@ namespace DoAnQuanLyChoThueOto
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnTatCa;
         private System.Windows.Forms.FlowLayoutPanel flpOto;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.ToolStripStatusLabel statusTenDangNhap;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
-        private System.Windows.Forms.ToolStripStatusLabel statusTenHienThi;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
-        private System.Windows.Forms.ToolStripStatusLabel statusQuyen;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem adminToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem doanhThuToolStripMenuItem;
@@ -770,7 +696,6 @@ namespace DoAnQuanLyChoThueOto
         private System.Windows.Forms.ToolStripMenuItem quảnLýToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hơpĐồngToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem otoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem kháchHàngToolStripMenuItem;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
@@ -779,5 +704,6 @@ namespace DoAnQuanLyChoThueOto
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem xóaToolStripMenuItem;
+        private System.Windows.Forms.FontDialog fontDialog1;
     }
 }

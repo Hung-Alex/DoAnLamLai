@@ -87,6 +87,13 @@ namespace DoAnQuanLyChoThueOto.DAO
         {
             return DAO.DataProvider.Instance.ExecuteNonQuery($"update XE set TrangThai = 0 where MaXe = '{maxe}'");
         }
-
+        public int UpdateOto(DTO.Oto x)
+        {
+            return DAO.DataProvider.Instance.ExecuteNonQuery($"exec dbo.usp_UpdateOto '{x.MaXe}' ,N'{x.TenXe}' ,N'{x.HangXe}' ,'{x.SoChoNgoi}' ,'{x.BienSoXe}'");
+        }
+        public int InsertOto(DTO.Oto x)
+        {
+            return DAO.DataProvider.Instance.ExecuteNonQuery($"exec dbo.usp_InsertOto N'{x.TenXe}' ,N'{x.HangXe}' ,'{x.BienSoXe}' ,'{x.SoChoNgoi}'");
+        }
     }
 }

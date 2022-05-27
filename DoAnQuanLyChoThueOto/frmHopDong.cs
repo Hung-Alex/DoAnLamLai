@@ -57,6 +57,7 @@ namespace DoAnQuanLyChoThueOto
                 {
                     ListViewItem itemoto = new ListViewItem(item.ThongTinListViewOto());
                     itemoto.Tag = item;
+                    lvDanhSachXeThue.Tag = x.DSXT;
                     lvDanhSachXeThue.Items.Add(itemoto);
                 }
             }
@@ -68,7 +69,7 @@ namespace DoAnQuanLyChoThueOto
         void Reset()
         {
             mstxtMaHopDong.Text = "";
-            txtTenXe.Text = "";
+            txtTenKH.Text = "";
             txtTienCoc.Text = "";
             txtTienPhaiTra.Text = "";
             txtTienThue.Text = "";
@@ -101,7 +102,7 @@ namespace DoAnQuanLyChoThueOto
         {
             LoadHopDong(DAO.HopDongDAO.Instance.GetListHopDong(1));//0 thanh toan  1 chua thanh toan
             LoadKH();
-            
+            LoadHangXe();
             SetEnable();
             rdChuaThanhToanTT.Checked = true;
             Reset();
@@ -110,6 +111,12 @@ namespace DoAnQuanLyChoThueOto
         {
             cbTenKhachHang.DataSource = DAO.CategoryDAO.Instance.GetKhachHang();
             cbTenKhachHang.DisplayMember = "TenKH";
+        }
+        void LoadHangXe()
+        {
+            List<string> hangxe = DAO.CategoryDAO.Instance.GetHangXe();
+            cbHangXe.DataSource = hangxe;
+
         }
 
 
@@ -152,6 +159,8 @@ namespace DoAnQuanLyChoThueOto
                 if (item.Checked)
                 {
                     DAO.HopDongDAO.Instance.RemoveHopDong((item.Tag as DTO.HopDong).MaHopDong);
+                    DAO.HoaDonDAO.Instance.RemoveHoaDon((item.Tag as DTO.HopDong).MaHopDong);
+                    DAO.HopDongDAO.Instance.RemoveHopDong_All((item.Tag as DTO.HopDong).MaHopDong);
                     foreach (DTO.Oto oto in (item.Tag as DTO.HopDong).DSXT)
                     {
                         DAO.OtoDAO.Instance.UpdateOtoTrangThai(oto.MaXe);
@@ -191,7 +200,7 @@ namespace DoAnQuanLyChoThueOto
                 gbDanhSachXeThue.Enabled = false;
                 lvHopDong_SelectedIndexChanged(lvHopDong, null);
             }
-            
+
         }
         void SetEnable()
         {
@@ -206,5 +215,174 @@ namespace DoAnQuanLyChoThueOto
         {
             LoadKH();
         }
-    } 
+
+        private void btnThemXe_Click(object sender, EventArgs e)
+        {
+            frmChonXe f = new frmChonXe();
+            f.ShowDialog();
+            if (!f.btnThem.Enabled)
+            {
+                foreach (DTO.Oto item in f.GetOto())
+                {
+                    if (!this.CheckXe(item.MaXe,lvDanhSachXeThue))
+                    {
+                        ListViewItem itemoto = new ListViewItem(item.ThongTinListViewOto());
+                        itemoto.Tag = item;
+                        lvDanhSachXeThue.Items.Add(itemoto);
+                    }
+                }
+
+            }
+        }
+        bool CheckXe(string maxe,ListView x)
+        {
+            foreach (ListViewItem item in x.Items)
+            {
+                if(string.Compare(maxe,(item.Tag as DTO.Oto).MaXe)==0)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in lvDanhSachXeThue.Items)
+            {
+                if (item.Checked)
+                {
+                    lvDanhSachXeThue.Items.RemoveAt(item.Index);
+                }
+            }
+        }
+        List<string> GetMaXeListView()
+        {
+            List<string> lsmaxe = new List<string>();
+            foreach (ListViewItem item in lvDanhSachXeThue.Items)
+            {
+                lsmaxe.Add((item.Tag as DTO.Oto).MaXe);
+            }
+            return lsmaxe;
+        }
+
+        private void btnCapNhat_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(mstxtMaHopDong.Text))
+            {
+                MessageBox.Show("Vui Lòng Chọn Hợp Đồng");
+                return;
+            }
+            if (string.IsNullOrEmpty(txtTienCoc.Text)||string.IsNullOrEmpty(txtTienThue.Text))
+            {
+                MessageBox.Show("Vui Lòng Không Để Trống thông tin");
+                return;
+            }
+            if (rdChuaThanhToanTT.Checked)
+            {
+
+                if (lvDanhSachXeThue.Items.Count<=0)
+                {
+                    MessageBox.Show("Vui long Chọn Xe");
+                    return;
+                }
+                if (DAO.HopDongDAO.Instance.UpdateHopDong(mstxtMaHopDong.Text, (cbTenKhachHang.SelectedItem as DTO.KhachHang).MaKH, int.Parse(txtTienCoc.Text.Trim()), int.Parse(txtTienThue.Text.Trim())) > 0)
+                {
+                    
+                        
+                        foreach (DTO.Oto item in (lvDanhSachXeThue.Tag as List<DTO.Oto>))
+                        {
+                            DAO.OtoDAO.Instance.UpdateOtoTrangThai(item.MaXe);
+                        }
+                    
+                    DAO.HopDongDAO.Instance.RemoveHopDong(mstxtMaHopDong.Text);
+                    DAO.HoaDonDAO.Instance.RemoveHoaDon(mstxtMaHopDong.Text);
+
+                    DateTime ngaythue = dtpNgayThue.Value;
+                    DateTime ngaytra = dtpNgayDuKienTra.Value;
+                    List<string> lsxe = GetMaXeListView();
+                    foreach (string item in lsxe)
+                    {
+                        DAO.HopDongDAO.Instance.InsertChiTietHopDong(mstxtMaHopDong.Text, item, ngaythue, ngaytra);
+                       
+                    }
+                    LoadHopDong(DAO.HopDongDAO.Instance.GetListHopDong(1));
+                    MessageBox.Show("Success");
+                    SetEnable();
+
+
+                }
+            }
+            if (rdThanhToanTT.Checked)
+            {
+                if (lvDanhSachXeThue.Items.Count <= 0)
+                {
+                    MessageBox.Show("Vui long Chọn Xe");
+                    return;
+                }
+                if (DAO.HopDongDAO.Instance.UpdateHopDong(mstxtMaHopDong.Text, (cbTenKhachHang.SelectedItem as DTO.KhachHang).MaKH, int.Parse(txtTienCoc.Text.Trim()), int.Parse(txtTienThue.Text.Trim())) > 0)
+                {
+                  
+                    DAO.HopDongDAO.Instance.RemoveHopDong(mstxtMaHopDong.Text);
+                    DAO.HoaDonDAO.Instance.RemoveHoaDon(mstxtMaHopDong.Text);
+                    DateTime ngaythue = dtpNgayThue.Value;
+                    DateTime ngaytra = dtpNgayDuKienTra.Value;
+                    List<string> lsxe = GetMaXeListView();
+                    foreach (string item in lsxe)
+                    {
+                        DAO.HopDongDAO.Instance.InsertChiTietHopDong(mstxtMaHopDong.Text, item, ngaythue, ngaytra);
+                    }
+                    DAO.DataProvider.Instance.ExecuteNonQuery($"update CHITIETTHUEXE set HinhThuc=0 where MaHopDong='{mstxtMaHopDong.Text}'");
+
+                    foreach (string item in lsxe)
+                    {
+                        DAO.OtoDAO.Instance.UpdateOtoTrangThai(item);
+                    }
+                    if (DAO.HoaDonDAO.Instance.InsertHoaDon(GetThongTinHoaDon()) > 0)
+                    {
+                        LoadHopDong(DAO.HopDongDAO.Instance.GetListHopDong(1));
+
+                        Reset();
+                        MessageBox.Show("Success");
+                        SetEnable();
+                    }
+                    else
+                    {
+                        MessageBox.Show("False");
+                        return;
+
+                    }
+
+
+                }
+            }
+        }
+
+        private void cbHangXe_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbHangXe.SelectedIndex!=-1 &&cbHangXe.SelectedItem!=null)
+            {
+                if (rdThanhToan.Checked)
+                {
+                    LoadHopDong(DAO.HopDongDAO.Instance.GetListHopDong(0, cbHangXe.SelectedItem as string));
+                }
+                if (rdChuaThanhToan.Checked)
+                {
+                    LoadHopDong(DAO.HopDongDAO.Instance.GetListHopDong(1, cbHangXe.SelectedItem as string));
+                }
+            }
+        }
+
+        private void txtTenXe_TextChanged(object sender, EventArgs e)
+        {
+            if (rdThanhToan.Checked)
+            {
+                LoadHopDong(DAO.HopDongDAO.Instance.GetListHopDong(txtTenKH.Text.Trim(),0));
+            }
+            if (rdChuaThanhToan.Checked)
+            {
+                LoadHopDong(DAO.HopDongDAO.Instance.GetListHopDong(txtTenKH.Text.Trim(),1));
+            }
+        }
+    }
 }

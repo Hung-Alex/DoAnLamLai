@@ -39,6 +39,11 @@ namespace DoAnQuanLyChoThueOto.DTO
             this.SoLuongXe = int.Parse(item["SoLuongXe"].ToString()); ;
             this.GhiChu = item["GhiChu"].ToString() ;
         }
+        public string [] ThongTinListView()
+        {
+            string[] s = { this.MaHoaDon,this.MaHopDong,this.TenKH,this.TenXe,this.SCMND,this.DiaChi,this.SoDT,this.TienCoc.ToString(),SoTienPhaiTra.ToString(),this.TongTien.ToString(),this.NgapLapHoaDon.ToString(),this.SoLuongXe.ToString(),this.GhiChu};
+            return s; 
+        }
         public HoaDon() { }
 
         public string MaHoaDon { get => _maHoaDon; set => _maHoaDon = value; }

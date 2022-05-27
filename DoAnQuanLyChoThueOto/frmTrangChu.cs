@@ -166,12 +166,12 @@ namespace DoAnQuanLyChoThueOto
 
                 string makh = (cbTenKhachHang.SelectedItem as KhachHang).MaKH;
                  string mahopdong = DAO.DataProvider.Instance.ExecuteScalar(@"select dbo.ufn_SinhMaHopDong()").ToString();
-                if (HopDongDAO.Instance.InsertHopDong(mahopdong,makh,int.Parse(txtTienCoc.Text),int.Parse(txtTienThue.Text))>0)
+                if(DAO.HopDongDAO.Instance.InsertHopDong(mahopdong,makh,int.Parse(txtTienCoc.Text),int.Parse(txtTienThue.Text))>0)
                 {
                     List<string> lsxe = GetMaXeListView();
                     foreach (string item in lsxe)
                     {
-                        HopDongDAO.Instance.InsertChiTietHopDong(mahopdong, item, ngaythue, ngaytra);
+                       DAO.HopDongDAO.Instance.InsertChiTietHopDong(mahopdong, item, ngaythue, ngaytra);
                     }
                     MessageBox.Show("Success");
                     loadOto(DAO.OtoDAO.Instance.GetListOto());
@@ -245,8 +245,37 @@ namespace DoAnQuanLyChoThueOto
         private void hơpĐồngToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmHopDong f = new frmHopDong();
-            
+            f.splitContainer1.Font = fontDialog1.Font;
             f.ShowDialog(); 
+        }
+
+        private void doanhThuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmDoanhThu f = new frmDoanhThu();
+            f.grThongKe.Font = fontDialog1.Font;
+            f.pnHead.Font = fontDialog1.Font;
+            f.ShowDialog();
+        }
+
+        private void fontToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (fontDialog1.ShowDialog()==DialogResult.OK)
+            {
+                grHopDong.Font = fontDialog1.Font;
+                grDSOTO.Font = fontDialog1.Font;
+            }
+        }
+
+        private void otoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmOto f = new frmOto();
+            f.pnAllFontColor.Font = fontDialog1.Font;
+            f.ShowDialog();
+        }
+
+        private void đăngXuấtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
 }
