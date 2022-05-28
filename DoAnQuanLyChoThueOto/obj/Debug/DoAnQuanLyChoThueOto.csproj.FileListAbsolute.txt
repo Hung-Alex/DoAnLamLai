@@ -14,3 +14,4 @@ X:\DoAnQuanLy\DoAnQuanLyChoThueOto\obj\Debug\DoAnQuanLyChoThueOto.frmHopDong.res
 X:\DoAnQuanLy\DoAnQuanLyChoThueOto\obj\Debug\DoAnQuanLyChoThueOto.frmChonXe.resources
 X:\DoAnQuanLy\DoAnQuanLyChoThueOto\obj\Debug\DoAnQuanLyChoThueOto.frmDoanhThu.resources
 X:\DoAnQuanLy\DoAnQuanLyChoThueOto\obj\Debug\DoAnQuanLyChoThueOto.frmOto.resources
+X:\DoAnQuanLy\DoAnQuanLyChoThueOto\obj\Debug\DoAnQuanLyChoThueOto.frmdieukhoan.resources

@@ -277,5 +277,11 @@ namespace DoAnQuanLyChoThueOto
         {
             this.Hide();
         }
+
+        private void btnDieuKhoan_Click(object sender, EventArgs e)
+        {
+            frmdieukhoan f = new frmdieukhoan();
+            f.ShowDialog();
+        }
     }
 }
