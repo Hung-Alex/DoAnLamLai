@@ -70,6 +70,7 @@ namespace DoAnQuanLyChoThueOto
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.pnThongTin = new System.Windows.Forms.Panel();
+            this.txtMaKhachHang = new System.Windows.Forms.TextBox();
             this.mstxtMaHopDong = new System.Windows.Forms.MaskedTextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.rdChuaThanhToanTT = new System.Windows.Forms.RadioButton();
@@ -436,6 +437,7 @@ namespace DoAnQuanLyChoThueOto
             // 
             // pnThongTin
             // 
+            this.pnThongTin.Controls.Add(this.txtMaKhachHang);
             this.pnThongTin.Controls.Add(this.mstxtMaHopDong);
             this.pnThongTin.Controls.Add(this.label9);
             this.pnThongTin.Controls.Add(this.rdChuaThanhToanTT);
@@ -459,6 +461,14 @@ namespace DoAnQuanLyChoThueOto
             this.pnThongTin.Name = "pnThongTin";
             this.pnThongTin.Size = new System.Drawing.Size(626, 351);
             this.pnThongTin.TabIndex = 6;
+            // 
+            // txtMaKhachHang
+            // 
+            this.txtMaKhachHang.Location = new System.Drawing.Point(490, 85);
+            this.txtMaKhachHang.Name = "txtMaKhachHang";
+            this.txtMaKhachHang.ReadOnly = true;
+            this.txtMaKhachHang.Size = new System.Drawing.Size(123, 22);
+            this.txtMaKhachHang.TabIndex = 18;
             // 
             // mstxtMaHopDong
             // 
@@ -588,12 +598,13 @@ namespace DoAnQuanLyChoThueOto
             // 
             // btnThemKH
             // 
-            this.btnThemKH.Location = new System.Drawing.Point(482, 129);
+            this.btnThemKH.Location = new System.Drawing.Point(490, 169);
             this.btnThemKH.Name = "btnThemKH";
             this.btnThemKH.Size = new System.Drawing.Size(123, 23);
             this.btnThemKH.TabIndex = 5;
             this.btnThemKH.Text = "Thêm";
             this.btnThemKH.UseVisualStyleBackColor = true;
+            this.btnThemKH.Click += new System.EventHandler(this.btnThemKH_Click);
             // 
             // label
             // 
@@ -606,12 +617,13 @@ namespace DoAnQuanLyChoThueOto
             // 
             // btnXemThongTin
             // 
-            this.btnXemThongTin.Location = new System.Drawing.Point(482, 82);
+            this.btnXemThongTin.Location = new System.Drawing.Point(490, 129);
             this.btnXemThongTin.Name = "btnXemThongTin";
             this.btnXemThongTin.Size = new System.Drawing.Size(123, 23);
             this.btnXemThongTin.TabIndex = 4;
             this.btnXemThongTin.Text = "Thông tin";
             this.btnXemThongTin.UseVisualStyleBackColor = true;
+            this.btnXemThongTin.Click += new System.EventHandler(this.btnXemThongTin_Click);
             // 
             // mtxtSCMND
             // 
@@ -717,5 +729,6 @@ namespace DoAnQuanLyChoThueOto
         private System.Windows.Forms.Button btnThemXe;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.TextBox txtMaKhachHang;
     }
 }

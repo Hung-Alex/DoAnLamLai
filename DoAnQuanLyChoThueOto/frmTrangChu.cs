@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DoAnQuanLyChoThueOto.Setting;
 
 namespace DoAnQuanLyChoThueOto
 {
@@ -18,6 +19,7 @@ namespace DoAnQuanLyChoThueOto
         public frmTrangChu()
         {
             InitializeComponent();
+            
            
 
 
@@ -136,6 +138,11 @@ namespace DoAnQuanLyChoThueOto
 
         #endregion
 
+       internal void AccessFunction()
+        {
+            tàiKhoảnToolStripMenuItem.Enabled = false;
+            doanhThuToolStripMenuItem.Enabled = false;
+        }
         private void btnXemThongTin_Click(object sender, EventArgs e)
         {
             if (cbTenKhachHang.SelectedIndex!=-1|cbTenKhachHang.SelectedItem!=null)
@@ -263,6 +270,8 @@ namespace DoAnQuanLyChoThueOto
             {
                 grHopDong.Font = fontDialog1.Font;
                 grDSOTO.Font = fontDialog1.Font;
+                CaiDat.Fonts = fontDialog1.Font;
+                
             }
         }
 
@@ -282,6 +291,30 @@ namespace DoAnQuanLyChoThueOto
         {
             frmdieukhoan f = new frmdieukhoan();
             f.ShowDialog();
+        }
+
+        private void kháchHàngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmKhachHang f = new frmKhachHang();
+            f.ShowDialog();
+        }
+
+        private void tàiKhoảnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmTaiKhoan f = new frmTaiKhoan();
+            f.ShowDialog();
+        }
+
+        private void colorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ColorDialog f = new ColorDialog();
+            if (f.ShowDialog() == DialogResult.OK)
+            {
+                grHopDong.ForeColor = f.Color;
+                grDSOTO.ForeColor = f.Color;
+                CaiDat.Colors = f.Color;
+
+            }
         }
     }
 }

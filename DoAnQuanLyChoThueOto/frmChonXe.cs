@@ -1,5 +1,6 @@
 ﻿using DoAnQuanLyChoThueOto.DAO;
 using DoAnQuanLyChoThueOto.DTO;
+using DoAnQuanLyChoThueOto.Setting;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,8 @@ namespace DoAnQuanLyChoThueOto
         public frmChonXe()
         {
             InitializeComponent();
+            this.Font = CaiDat.Fonts;
+            this.ForeColor = CaiDat.Colors;
         }
         void loadXe(List<DTO.Oto> oto)
         {

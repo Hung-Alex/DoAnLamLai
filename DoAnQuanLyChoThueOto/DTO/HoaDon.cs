@@ -22,25 +22,30 @@ namespace DoAnQuanLyChoThueOto.DTO
         private DateTime _ngapLapHoaDon;
         private int _soLuongXe;
         private string _ghiChu;
+        private string _maKH;
 
         public HoaDon(DataRow item)
         {
             this.MaHoaDon =item["MaHoaDon"].ToString();
             this.MaHopDong = item["MaHopDong"].ToString();
-            this.TenKH = item["TenKhachHang"].ToString();
-            this.TenXe = item["TenXe"].ToString();
-            this.SCMND = item["SCMNDHD"].ToString();
-            this.DiaChi = item["DiaChiHD"].ToString();
-            this.SoDT = item["SoDTHD"].ToString();
-            this.TienCoc = int.Parse(item["TienCocHD"].ToString());
-            this.SoTienPhaiTra = int.Parse(item["SoTienPhaiTra"].ToString());
+            this.TenKH = item["TenKH"].ToString();
+            
+            this.SCMND = item["SCMND"].ToString();
+            this.DiaChi = item["DiaChi"].ToString();
+            this.SoDT = item["SoDT"].ToString();
+            this.TienCoc = int.Parse(item["TienCoc"].ToString());
+            this.SoTienPhaiTra = int.Parse(item["TienPhaiTra"].ToString());
             this.TongTien = int.Parse(item["TongTien"].ToString());
-            this.NgapLapHoaDon = DateTime.Now;
+            this.NgapLapHoaDon = DateTime.Parse(item["NgayLapHoaDon"].ToString());
             this.SoLuongXe = int.Parse(item["SoLuongXe"].ToString()); ;
             this.GhiChu = item["GhiChu"].ToString() ;
         }
         public string [] ThongTinListView()
         {
+            foreach (var item in DAO.OtoDAO.Instance.GetTenXe(this.MaHoaDon))
+            {
+                this.TenXe += item + " ;";
+            }
             string[] s = { this.MaHoaDon,this.MaHopDong,this.TenKH,this.TenXe,this.SCMND,this.DiaChi,this.SoDT,this.TienCoc.ToString(),SoTienPhaiTra.ToString(),this.TongTien.ToString(),this.NgapLapHoaDon.ToString(),this.SoLuongXe.ToString(),this.GhiChu};
             return s; 
         }
@@ -59,5 +64,6 @@ namespace DoAnQuanLyChoThueOto.DTO
         public int SoLuongXe { get => _soLuongXe; set => _soLuongXe = value; }
         public string GhiChu { get => _ghiChu; set => _ghiChu = value; }
         public string TenKH { get => _tenKH; set => _tenKH = value; }
+        public string MaKH { get => _maKH; set => _maKH = value; }
     }
 }

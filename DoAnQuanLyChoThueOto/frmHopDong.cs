@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DoAnQuanLyChoThueOto.Setting;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,10 +16,11 @@ namespace DoAnQuanLyChoThueOto
         public frmHopDong()
         {
             InitializeComponent();
-
+            this.Font = CaiDat.Fonts;
+            this.ForeColor = CaiDat.Colors;
         }
 
-        void LoadHopDong(List<DTO.HopDong> x)
+        void LoadHopDong(List<DTO.HopDong> x)//  hiển thị hợp đồng
         {
             lvHopDong.Items.Clear();
             foreach (DTO.HopDong item in x)
@@ -42,6 +44,7 @@ namespace DoAnQuanLyChoThueOto
                 dtpNgayDuKienTra.Value = x.NgayTra;
                 txtTienThue.Text = x.TienThue.ToString();
                 txtTienCoc.Text = x.TienCoc.ToString();
+                txtMaKhachHang.Text = x.MaKhachHang;
                 if (x.HinhThuc > 0)
                 {
                     rdChuaThanhToanTT.Checked = true;
@@ -77,7 +80,7 @@ namespace DoAnQuanLyChoThueOto
             mtxtSCMND.Text = "";
             lvDanhSachXeThue.Items.Clear();
         }
-        DTO.HoaDon GetThongTinHoaDon()
+        DTO.HoaDon GetThongTinHoaDon()// lấy thông tin hóa đơn từ thông tin
         {
             DTO.HoaDon x = new DTO.HoaDon();
             x.MaHopDong = mstxtMaHopDong.Text;
@@ -95,6 +98,7 @@ namespace DoAnQuanLyChoThueOto
             }
             x.TienCoc = int.Parse(txtTienCoc.Text);
             x.TongTien = int.Parse(txtTienThue.Text);
+            x.MaKH = txtMaKhachHang.Text;
 
             return x;
         }
@@ -118,7 +122,13 @@ namespace DoAnQuanLyChoThueOto
             cbHangXe.DataSource = hangxe;
 
         }
-
+        void UpdateTrangThaiXe(List<DTO.Oto> dsxe)
+        {
+            foreach (DTO.Oto item in dsxe)
+            {
+                DAO.OtoDAO.Instance.UpdateOtoTrangThai(item.MaXe);
+            }
+        }
 
         private void btnThanhToan_Click(object sender, EventArgs e)
         {
@@ -129,26 +139,15 @@ namespace DoAnQuanLyChoThueOto
             }
             else
             {
-                if (DAO.HopDongDAO.Instance.UpdateHopDong(mstxtMaHopDong.Text) > 0)
-                {
-                    foreach (ListViewItem item in lvDanhSachXeThue.Items)
-                    {
-                        DAO.OtoDAO.Instance.UpdateOtoTrangThai((item.Tag as DTO.Oto).MaXe);
-                    }
-                    if (DAO.HoaDonDAO.Instance.InsertHoaDon(GetThongTinHoaDon()) > 0)
-                    {
-                        LoadHopDong(DAO.HopDongDAO.Instance.GetListHopDong(1));
+                DTO.HoaDon x = GetThongTinHoaDon();
+                DAO.HoaDonDAO.Instance.InsertHoaDon(x);
+                ThemXeCTHoaDonXe(GetMaXeListView(),x.MaHoaDon);
+                DAO.HopDongDAO.Instance.UpdateHopDong(mstxtMaHopDong.Text.Trim());
+                UpdateTrangThaiXe(GetDanhSachXe());
+                LoadHopDong(DAO.HopDongDAO.Instance.GetListHopDong(1));
+                MessageBox.Show("Success");
+                Reset();
 
-                        Reset();
-                        MessageBox.Show("Success");
-                    }
-                    else
-                    {
-                        MessageBox.Show("False");
-                        return;
-
-                    }
-                }
             }
         }
 
@@ -158,17 +157,26 @@ namespace DoAnQuanLyChoThueOto
             {
                 if (item.Checked)
                 {
-                    DAO.HopDongDAO.Instance.RemoveHopDong((item.Tag as DTO.HopDong).MaHopDong);
-                    DAO.HoaDonDAO.Instance.RemoveHoaDon((item.Tag as DTO.HopDong).MaHopDong);
-                    DAO.HopDongDAO.Instance.RemoveHopDong_All((item.Tag as DTO.HopDong).MaHopDong);
-                    foreach (DTO.Oto oto in (item.Tag as DTO.HopDong).DSXT)
+                    if((item.Tag as DTO.HopDong).HinhThuc==1)
                     {
-                        DAO.OtoDAO.Instance.UpdateOtoTrangThai(oto.MaXe);
+                        DAO.HopDongDAO.Instance.RemoveHopDong((item.Tag as DTO.HopDong).MaHopDong);
+                        UpdateTrangThaiXe((item.Tag as DTO.HopDong).DSXT);
+                        DAO.HopDongDAO.Instance.RemoveHopDong_All((item.Tag as DTO.HopDong).MaHopDong);
+                        LoadHopDong(DAO.HopDongDAO.Instance.GetListHopDong(1));
                     }
+                    else
+                    {
+                        string mahoadon = DAO.HoaDonDAO.Instance.FindMaHoaDon((item.Tag as DTO.HopDong).MaHopDong).ToString();
+                        DAO.HoaDonDAO.Instance.RemoveHoaDonChiTietXe(mahoadon);
+                        DAO.HopDongDAO.Instance.RemoveHopDong((item.Tag as DTO.HopDong).MaHopDong);
+                        DAO.HoaDonDAO.Instance.RemoveHoaDon((mahoadon));
+                        DAO.HopDongDAO.Instance.RemoveHopDong_All((item.Tag as DTO.HopDong).MaHopDong);
+                        LoadHopDong(DAO.HopDongDAO.Instance.GetListHopDong(1));
+                    }
+                   
+
                 }
             }
-            LoadHopDong(DAO.HopDongDAO.Instance.GetListHopDong(1));
-            Reset();
 
         }
 
@@ -178,6 +186,7 @@ namespace DoAnQuanLyChoThueOto
             if (tenkh.SelectedIndex != -1 && tenkh.SelectedItem != null)
             {
                 mtxtSCMND.Text = (tenkh.SelectedItem as DTO.KhachHang).SCMND;
+                txtMaKhachHang.Text= (tenkh.SelectedItem as DTO.KhachHang).MaKH;
             }
         }
 
@@ -245,6 +254,13 @@ namespace DoAnQuanLyChoThueOto
             }
             return false;
         }
+        void ThemXeCTHoaDonXe(List<string> dsXe,string mahoadon)
+        {
+            foreach (string item in dsXe)
+            {
+                DAO.HoaDonDAO.Instance.InsertChiTietHoaDon(mahoadon, item,dsXe.Count);
+            }
+        }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -256,7 +272,7 @@ namespace DoAnQuanLyChoThueOto
                 }
             }
         }
-        List<string> GetMaXeListView()
+        List<string> GetMaXeListView()// cái này lấy item bên listview hopdong để hiển thị qua bên danh sách xe thuê
         {
             List<string> lsmaxe = new List<string>();
             foreach (ListViewItem item in lvDanhSachXeThue.Items)
@@ -268,94 +284,93 @@ namespace DoAnQuanLyChoThueOto
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(mstxtMaHopDong.Text))
+            if (string.IsNullOrWhiteSpace(mstxtMaHopDong.Text))
             {
-                MessageBox.Show("Vui Lòng Chọn Hợp Đồng");
-                return;
+                MessageBox.Show("Vui Lòng chọn hơp đồng để chỉnh sửa");
+               
             }
-            if (string.IsNullOrEmpty(txtTienCoc.Text)||string.IsNullOrEmpty(txtTienThue.Text))
+            else
             {
-                MessageBox.Show("Vui Lòng Không Để Trống thông tin");
-                return;
-            }
-            if (rdChuaThanhToanTT.Checked)
-            {
-
-                if (lvDanhSachXeThue.Items.Count<=0)
+                if (string.IsNullOrWhiteSpace(txtTienCoc.Text)||string.IsNullOrWhiteSpace(txtTienThue.Text))
                 {
-                    MessageBox.Show("Vui long Chọn Xe");
+                    MessageBox.Show("Vui Lòng điền dầy đủ thông tin ");
                     return;
-                }
-                if (DAO.HopDongDAO.Instance.UpdateHopDong(mstxtMaHopDong.Text, (cbTenKhachHang.SelectedItem as DTO.KhachHang).MaKH, int.Parse(txtTienCoc.Text.Trim()), int.Parse(txtTienThue.Text.Trim())) > 0)
-                {
-                    
-                        
-                        foreach (DTO.Oto item in (lvDanhSachXeThue.Tag as List<DTO.Oto>))
-                        {
-                            DAO.OtoDAO.Instance.UpdateOtoTrangThai(item.MaXe);
-                        }
-                    
-                    DAO.HopDongDAO.Instance.RemoveHopDong(mstxtMaHopDong.Text);
-                    DAO.HoaDonDAO.Instance.RemoveHoaDon(mstxtMaHopDong.Text);
-
-                    DateTime ngaythue = dtpNgayThue.Value;
-                    DateTime ngaytra = dtpNgayDuKienTra.Value;
-                    List<string> lsxe = GetMaXeListView();
-                    foreach (string item in lsxe)
-                    {
-                        DAO.HopDongDAO.Instance.InsertChiTietHopDong(mstxtMaHopDong.Text, item, ngaythue, ngaytra);
-                       
-                    }
-                    LoadHopDong(DAO.HopDongDAO.Instance.GetListHopDong(1));
-                    MessageBox.Show("Success");
-                    SetEnable();
-
 
                 }
-            }
-            if (rdThanhToanTT.Checked)
-            {
-                if (lvDanhSachXeThue.Items.Count <= 0)
+                if (rdChuaThanhToanTT.Checked)
                 {
-                    MessageBox.Show("Vui long Chọn Xe");
-                    return;
-                }
-                if (DAO.HopDongDAO.Instance.UpdateHopDong(mstxtMaHopDong.Text, (cbTenKhachHang.SelectedItem as DTO.KhachHang).MaKH, int.Parse(txtTienCoc.Text.Trim()), int.Parse(txtTienThue.Text.Trim())) > 0)
-                {
-                  
-                    DAO.HopDongDAO.Instance.RemoveHopDong(mstxtMaHopDong.Text);
-                    DAO.HoaDonDAO.Instance.RemoveHoaDon(mstxtMaHopDong.Text);
-                    DateTime ngaythue = dtpNgayThue.Value;
-                    DateTime ngaytra = dtpNgayDuKienTra.Value;
-                    List<string> lsxe = GetMaXeListView();
-                    foreach (string item in lsxe)
+                    object s = DAO.HoaDonDAO.Instance.FindMaHoaDon(mstxtMaHopDong.Text);
+                    if (s==DBNull.Value)
                     {
-                        DAO.HopDongDAO.Instance.InsertChiTietHopDong(mstxtMaHopDong.Text, item, ngaythue, ngaytra);
-                    }
-                    DAO.DataProvider.Instance.ExecuteNonQuery($"update CHITIETTHUEXE set HinhThuc=0 where MaHopDong='{mstxtMaHopDong.Text}'");
 
-                    foreach (string item in lsxe)
-                    {
-                        DAO.OtoDAO.Instance.UpdateOtoTrangThai(item);
-                    }
-                    if (DAO.HoaDonDAO.Instance.InsertHoaDon(GetThongTinHoaDon()) > 0)
-                    {
-                        LoadHopDong(DAO.HopDongDAO.Instance.GetListHopDong(1));
-
+                        DAO.HopDongDAO.Instance.UpdateHopDong(mstxtMaHopDong.Text.Trim(), txtMaKhachHang.Text, int.Parse(txtTienCoc.Text), int.Parse(txtTienThue.Text));
+                        DAO.HopDongDAO.Instance.RemoveHopDong(mstxtMaHopDong.Text);
+                        UpdateTrangThaiXe(GetDanhSachXe());
+                        ThemChiTietThueXe();
+                        MessageBox.Show("Success ");
                         Reset();
-                        MessageBox.Show("Success");
+                        LoadHopDong(DAO.HopDongDAO.Instance.GetListHopDong(1));
                         SetEnable();
+
                     }
                     else
                     {
-                        MessageBox.Show("False");
-                        return;
-
+                        
+                        DAO.HopDongDAO.Instance.UpdateHopDong(mstxtMaHopDong.Text.Trim(), txtMaKhachHang.Text, int.Parse(txtTienCoc.Text), int.Parse(txtTienThue.Text));
+                        DAO.HopDongDAO.Instance.RemoveHopDong(mstxtMaHopDong.Text);
+                        UpdateTrangThaiXe(GetDanhSachXe());
+                        ThemChiTietThueXe();
+                        MessageBox.Show("Success ");
+                        Reset();
+                        LoadHopDong(DAO.HopDongDAO.Instance.GetListHopDong(1));
+                        SetEnable();
                     }
+                    
+
 
 
                 }
+                if (rdThanhToanTT.Checked)
+                {
+                    DAO.HopDongDAO.Instance.UpdateHopDong(mstxtMaHopDong.Text.Trim(), txtMaKhachHang.Text, int.Parse(txtTienCoc.Text), int.Parse(txtTienThue.Text));
+                    DAO.HopDongDAO.Instance.RemoveHopDong(mstxtMaHopDong.Text);
+                    UpdateTrangThaiXe(GetDanhSachXe());
+                    ThemChiTietThueXe();
+                    if (string.IsNullOrEmpty(mstxtMaHopDong.Text.Trim()))
+                    {
+                        MessageBox.Show("Vui lòng chọn hợp đồng để thanh toán");
+                        return;
+                    }
+                    else
+                    {
+                        DTO.HoaDon x = GetThongTinHoaDon();
+                        DAO.HoaDonDAO.Instance.InsertHoaDon(x);
+                        ThemXeCTHoaDonXe(GetMaXeListView(), x.MaHoaDon);
+                        DAO.HopDongDAO.Instance.UpdateHopDong(mstxtMaHopDong.Text.Trim());
+                        UpdateTrangThaiXe(GetDanhSachXe());
+                        LoadHopDong(DAO.HopDongDAO.Instance.GetListHopDong(1));
+                        btnSua.Text = "Sửa";
+                        btnSua.Enabled = true;
+                        btnCapNhat.Enabled = false;
+                        MessageBox.Show("Success ");
+                        Reset();
+                        LoadHopDong(DAO.HopDongDAO.Instance.GetListHopDong(1));
+                        SetEnable();
+                    }
+                   
+                }
+                
+
             }
+        }
+        List<DTO.Oto> GetDanhSachXe()// lấy danh sách xe đang select 
+        {
+            List<DTO.Oto> x = null;
+            if (lvHopDong.SelectedItems.Count>0)
+            {
+                x = (lvHopDong.SelectedItems[0].Tag as DTO.HopDong).DSXT;
+            }
+            return x;
         }
 
         private void cbHangXe_SelectedIndexChanged(object sender, EventArgs e)
@@ -372,7 +387,21 @@ namespace DoAnQuanLyChoThueOto
                 }
             }
         }
-
+        void ThemChiTietThueXe()
+        {
+            if (lvDanhSachXeThue.Items.Count<=0)
+            {
+                MessageBox.Show("Vui lòng chọn xe");
+                return;
+            }
+            else
+            {
+                foreach (ListViewItem item in lvDanhSachXeThue.Items)
+                {
+                    DAO.HopDongDAO.Instance.InsertChiTietHopDong(mstxtMaHopDong.Text, (item.Tag as DTO.Oto).MaXe, dtpNgayThue.Value, dtpNgayDuKienTra.Value);
+                }
+            }
+        }
         private void txtTenXe_TextChanged(object sender, EventArgs e)
         {
             if (rdThanhToan.Checked)
@@ -383,6 +412,29 @@ namespace DoAnQuanLyChoThueOto
             {
                 LoadHopDong(DAO.HopDongDAO.Instance.GetListHopDong(txtTenKH.Text.Trim(),1));
             }
+        }
+
+        private void btnXemThongTin_Click(object sender, EventArgs e)
+        {
+            if (cbTenKhachHang.SelectedIndex != -1 || cbTenKhachHang.SelectedItem != null||string.IsNullOrWhiteSpace(cbTenKhachHang.Text))
+            {
+                frmThemKhachHang f = new frmThemKhachHang();
+                f.Text = "Thông Tin Khách Hàng";
+                f.HienThiThongTinKH(cbTenKhachHang.SelectedItem as DTO.KhachHang);
+                f.Controls.Remove(f.btnReset);
+                f.Controls.Remove(f.btnThem);
+                f.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("vui lòng chọn khách hàng để xem");
+            }
+        }
+
+        private void btnThemKH_Click(object sender, EventArgs e)
+        {
+            frmThemKhachHang f = new frmThemKhachHang();
+            f.ShowDialog();
         }
     }
 }

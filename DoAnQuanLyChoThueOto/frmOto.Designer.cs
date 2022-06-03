@@ -29,10 +29,11 @@ namespace DoAnQuanLyChoThueOto
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pnAllFontColor = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.txt_findoto = new System.Windows.Forms.TextBox();
-            this.listView_oto = new System.Windows.Forms.ListView();
+            this.lvOto = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -53,16 +54,19 @@ namespace DoAnQuanLyChoThueOto
             this.label4 = new System.Windows.Forms.Label();
             this.btn_updateoto = new System.Windows.Forms.Button();
             this.btn_addoto = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.xóaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnAllFontColor.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel_editOto.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnAllFontColor
             // 
             this.pnAllFontColor.Controls.Add(this.label6);
             this.pnAllFontColor.Controls.Add(this.txt_findoto);
-            this.pnAllFontColor.Controls.Add(this.listView_oto);
+            this.pnAllFontColor.Controls.Add(this.lvOto);
             this.pnAllFontColor.Controls.Add(this.panel2);
             this.pnAllFontColor.Location = new System.Drawing.Point(12, 12);
             this.pnAllFontColor.Name = "pnAllFontColor";
@@ -86,27 +90,27 @@ namespace DoAnQuanLyChoThueOto
             this.txt_findoto.TabIndex = 18;
             this.txt_findoto.TextChanged += new System.EventHandler(this.txt_findoto_TextChanged);
             // 
-            // listView_oto
+            // lvOto
             // 
-            this.listView_oto.CheckBoxes = true;
-            this.listView_oto.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lvOto.CheckBoxes = true;
+            this.lvOto.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5,
             this.columnHeader6});
-            this.listView_oto.FullRowSelect = true;
-            this.listView_oto.GridLines = true;
-            this.listView_oto.HideSelection = false;
-            this.listView_oto.Location = new System.Drawing.Point(3, 60);
-            this.listView_oto.MultiSelect = false;
-            this.listView_oto.Name = "listView_oto";
-            this.listView_oto.Size = new System.Drawing.Size(772, 421);
-            this.listView_oto.TabIndex = 17;
-            this.listView_oto.UseCompatibleStateImageBehavior = false;
-            this.listView_oto.View = System.Windows.Forms.View.Details;
-            this.listView_oto.SelectedIndexChanged += new System.EventHandler(this.listView_oto_SelectedIndexChanged);
+            this.lvOto.FullRowSelect = true;
+            this.lvOto.GridLines = true;
+            this.lvOto.HideSelection = false;
+            this.lvOto.Location = new System.Drawing.Point(3, 60);
+            this.lvOto.MultiSelect = false;
+            this.lvOto.Name = "lvOto";
+            this.lvOto.Size = new System.Drawing.Size(772, 421);
+            this.lvOto.TabIndex = 17;
+            this.lvOto.UseCompatibleStateImageBehavior = false;
+            this.lvOto.View = System.Windows.Forms.View.Details;
+            this.lvOto.SelectedIndexChanged += new System.EventHandler(this.listView_oto_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -265,6 +269,21 @@ namespace DoAnQuanLyChoThueOto
             this.btn_addoto.UseVisualStyleBackColor = true;
             this.btn_addoto.Click += new System.EventHandler(this.btn_addoto_Click);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.xóaToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(105, 28);
+            // 
+            // xóaToolStripMenuItem
+            // 
+            this.xóaToolStripMenuItem.Name = "xóaToolStripMenuItem";
+            this.xóaToolStripMenuItem.Size = new System.Drawing.Size(104, 24);
+            this.xóaToolStripMenuItem.Text = "Xóa";
+            this.xóaToolStripMenuItem.Click += new System.EventHandler(this.xóaToolStripMenuItem_Click);
+            // 
             // frmOto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -279,6 +298,7 @@ namespace DoAnQuanLyChoThueOto
             this.panel2.ResumeLayout(false);
             this.panel_editOto.ResumeLayout(false);
             this.panel_editOto.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -298,7 +318,7 @@ namespace DoAnQuanLyChoThueOto
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btn_updateoto;
         private System.Windows.Forms.Button btn_addoto;
-        private System.Windows.Forms.ListView listView_oto;
+        private System.Windows.Forms.ListView lvOto;
         private System.Windows.Forms.TextBox txt_sochongoi;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label6;
@@ -309,5 +329,7 @@ namespace DoAnQuanLyChoThueOto
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem xóaToolStripMenuItem;
     }
 }

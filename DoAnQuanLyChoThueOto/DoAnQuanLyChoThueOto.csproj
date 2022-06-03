@@ -57,6 +57,7 @@
     <Compile Include="DTO\HopDong.cs" />
     <Compile Include="DTO\KhachHang.cs" />
     <Compile Include="DTO\Oto.cs" />
+    <Compile Include="DTO\TaiKhoan.cs" />
     <Compile Include="frmChonXe.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,17 +88,35 @@
     <Compile Include="frmHopDong.Designer.cs">
       <DependentUpon>frmHopDong.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKhachHang.Designer.cs">
+      <DependentUpon>frmKhachHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmOto.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmOto.Designer.cs">
       <DependentUpon>frmOto.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmTaiKhoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTaiKhoan.Designer.cs">
+      <DependentUpon>frmTaiKhoan.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmThemKhachHang.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmThemKhachHang.Designer.cs">
       <DependentUpon>frmThemKhachHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmThemTkl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmThemTkl.Designer.cs">
+      <DependentUpon>frmThemTkl.cs</DependentUpon>
     </Compile>
     <Compile Include="frmTrangChu.cs">
       <SubType>Form</SubType>
@@ -107,6 +126,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Setting\CaiDat.cs" />
     <EmbeddedResource Include="frmChonXe.resx">
       <DependentUpon>frmChonXe.cs</DependentUpon>
     </EmbeddedResource>
@@ -122,11 +142,20 @@
     <EmbeddedResource Include="frmHopDong.resx">
       <DependentUpon>frmHopDong.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmKhachHang.resx">
+      <DependentUpon>frmKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmOto.resx">
       <DependentUpon>frmOto.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmTaiKhoan.resx">
+      <DependentUpon>frmTaiKhoan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmThemKhachHang.resx">
       <DependentUpon>frmThemKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmThemTkl.resx">
+      <DependentUpon>frmThemTkl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTrangChu.resx">
       <DependentUpon>frmTrangChu.cs</DependentUpon>

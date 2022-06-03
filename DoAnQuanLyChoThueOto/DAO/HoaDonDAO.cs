@@ -25,15 +25,31 @@ namespace DoAnQuanLyChoThueOto.DAO
         public HoaDonDAO() { }
         public int  InsertHoaDon(DTO.HoaDon x)
         {
-            return DAO.DataProvider.Instance.ExecuteNonQuery($"exec dbo.usp_InsertHoaDon  '{x.MaHoaDon}','{x.MaHopDong}' ,N'{x.TenKH}' ,N'{x.TenXe}' ,'{x.SCMND}' ,N'{x.DiaChi}' ,'{x.SoDT}' ,'{x.TienCoc}' ,'{x.SoTienPhaiTra}' ,'{x.TongTien}' ,'{x.NgapLapHoaDon}' ,'{x.SoLuongXe}' ");
+            return DAO.DataProvider.Instance.ExecuteNonQuery($"exec dbo.usp_InsertHoaDon '{x.MaHoaDon}','{x.MaHopDong}' ,'{x.MaKH}' ,'{x.TienCoc}' ,'{x.SoTienPhaiTra}' ,'{x.TongTien}' ,'{x.NgapLapHoaDon}' ,N'{x.GhiChu}' ");
         }
-        public int RemoveHoaDon(string mahopdong)
+        public int RemoveHoaDon(string mahoadon)
         {
-            return DAO.DataProvider.Instance.ExecuteNonQuery($"delete HOADON where MaHopDong='{mahopdong}' ");
+            return DAO.DataProvider.Instance.ExecuteNonQuery($"delete HOADON where MaHoaDon='{mahoadon}' ");
         }
-        public List<DTO.HoaDon> GetListHoaDon(DateTime start ,DateTime end)
+        public int InsertChiTietHoaDon(string mahoadon,string maxe,int soluongxe) // số lượng xe thuê của hợp đồng
         {
-            DataTable data = DAO.DataProvider.Instance.ExecuteQuery($"select * from HOADON where NgayLapHoaDon>='{start}' and NgayLapHoaDon<='{end}'");
+            return DAO.DataProvider.Instance.ExecuteNonQuery($"exec dbo.usp_InsertChiTietHoaDonXe '{mahoadon}' ,'{maxe}' , {soluongxe}");
+        }
+        public int RemoveHoaDonChiTietXe(string mahoadon)
+        {
+            return DAO.DataProvider.Instance.ExecuteNonQuery($"delete CHITIETHOADONXE where MaHoaDon='{mahoadon}' ");
+        }
+        public object FindMaHoaDon(string mahopdong)
+        {
+            if (DAO.DataProvider.Instance.ExecuteQuery($"select MaHoaDon from HOADON where MaHopDong='{mahopdong}'").Rows.Count>0)
+            {
+                return DAO.DataProvider.Instance.ExecuteScalar($"select MaHoaDon from HOADON where MaHopDong='{mahopdong}'").ToString();
+            }
+            return null;
+        }
+        public List<DTO.HoaDon> GetListHoaDon(DateTime start, DateTime end)
+        {
+            DataTable data = DAO.DataProvider.Instance.ExecuteQuery($"exec dbo.usp_GetHoaDon  @ngaybatdau  , @ngayketthuc ",new object[] {start,end });
             List<DTO.HoaDon> lshoadon = new List<DTO.HoaDon>();
             foreach (DataRow item in data.Rows)
             {

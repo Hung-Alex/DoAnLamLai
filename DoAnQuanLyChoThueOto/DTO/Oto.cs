@@ -16,6 +16,7 @@ namespace DoAnQuanLyChoThueOto.DTO
         private string _bienSoXe;
         private int _soChoNgoi;
         private int _trangThai;
+       
 
         
 

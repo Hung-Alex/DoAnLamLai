@@ -15,3 +15,6 @@ X:\DoAnQuanLy\DoAnQuanLyChoThueOto\obj\Debug\DoAnQuanLyChoThueOto.frmChonXe.reso
 X:\DoAnQuanLy\DoAnQuanLyChoThueOto\obj\Debug\DoAnQuanLyChoThueOto.frmDoanhThu.resources
 X:\DoAnQuanLy\DoAnQuanLyChoThueOto\obj\Debug\DoAnQuanLyChoThueOto.frmOto.resources
 X:\DoAnQuanLy\DoAnQuanLyChoThueOto\obj\Debug\DoAnQuanLyChoThueOto.frmdieukhoan.resources
+X:\DoAnQuanLy\DoAnQuanLyChoThueOto\obj\Debug\DoAnQuanLyChoThueOto.frmKhachHang.resources
+X:\DoAnQuanLy\DoAnQuanLyChoThueOto\obj\Debug\DoAnQuanLyChoThueOto.frmTaiKhoan.resources
+X:\DoAnQuanLy\DoAnQuanLyChoThueOto\obj\Debug\DoAnQuanLyChoThueOto.frmThemTkl.resources

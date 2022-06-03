@@ -83,6 +83,16 @@ namespace DoAnQuanLyChoThueOto.DAO
             }
             return otos;
         }
+        public List<string> GetTenXe(string mahoadon)
+        {
+            DataTable data = DAO.DataProvider.Instance.ExecuteQuery($"select a.TenXe from XE A,CHITIETHOADONXE C where a.MaXe=c.MaXe and  c.MaHoaDon='{mahoadon}'");
+            List<string> dstenxe = new List<string>();
+            foreach (DataRow item in data.Rows)
+            {
+                dstenxe.Add(item["TenXe"].ToString());
+            }
+            return dstenxe;
+        }
         public int UpdateOtoTrangThai(string maxe)
         {
             return DAO.DataProvider.Instance.ExecuteNonQuery($"update XE set TrangThai = 0 where MaXe = '{maxe}'");
@@ -95,5 +105,6 @@ namespace DoAnQuanLyChoThueOto.DAO
         {
             return DAO.DataProvider.Instance.ExecuteNonQuery($"exec dbo.usp_InsertOto N'{x.TenXe}' ,N'{x.HangXe}' ,'{x.BienSoXe}' ,'{x.SoChoNgoi}'");
         }
+        
     }
 }

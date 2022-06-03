@@ -19,12 +19,16 @@ namespace DoAnQuanLyChoThueOto
 
         private void btnDangNhap_Click(object sender, EventArgs e)
         {
-            frmTrangChu f = new frmTrangChu();
+            
             string username = txtDangNhap.Text.Trim();
             string password = txtMatKhau.Text.Trim();
             if (Login(username, password))
             {
                 frmTrangChu result = new frmTrangChu();
+                if (!DAO.AccountDAO.Instance.PhanQuyen(username))
+                {
+                    result.AccessFunction();
+                }
                 this.Hide();
                 result.ShowDialog();
                 this.Show();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DoAnQuanLyChoThueOto.Setting;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,15 +16,17 @@ namespace DoAnQuanLyChoThueOto
         public frmOto()
         {
             InitializeComponent();
+            this.Font = CaiDat.Fonts;
+            this.ForeColor = CaiDat.Colors;
         }
        void LoadOto(List<DTO.Oto> x)
         {
-            listView_oto.Items.Clear();
+            lvOto.Items.Clear();
             foreach (DTO.Oto item in x)
             {
                 ListViewItem itemoto = new ListViewItem(item.ThongTinListViewOto());
                 itemoto.Tag = item;
-                listView_oto.Items.Add(itemoto);
+                lvOto.Items.Add(itemoto);
             }
         }
 
@@ -63,9 +66,9 @@ namespace DoAnQuanLyChoThueOto
 
         private void listView_oto_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listView_oto.SelectedItems.Count>0)
+            if (lvOto.SelectedItems.Count>0)
             {
-                HienThiThongTin((listView_oto.SelectedItems[0].Tag) as DTO.Oto);
+                HienThiThongTin((lvOto.SelectedItems[0].Tag) as DTO.Oto);
             }
             else
             {
@@ -113,6 +116,17 @@ namespace DoAnQuanLyChoThueOto
             {
                 MessageBox.Show("False");
 
+            }
+        }
+
+        private void xóaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in lvOto.Items)
+            {
+                if (item.Checked)
+                {
+
+                }
             }
         }
     }

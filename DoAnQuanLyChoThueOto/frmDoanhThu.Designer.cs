@@ -167,38 +167,47 @@ namespace DoAnQuanLyChoThueOto
             // columnHeader1
             // 
             this.columnHeader1.Text = "Mã Hóa Đơn";
+            this.columnHeader1.Width = 106;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Mã Hợp Đồng";
+            this.columnHeader2.Width = 108;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Tên Khách Hàng";
+            this.columnHeader3.Width = 137;
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "Tên Xe";
+            this.columnHeader4.Width = 121;
             // 
             // columnHeader5
             // 
             this.columnHeader5.Text = "SCMND";
+            this.columnHeader5.Width = 122;
             // 
             // columnHeader6
             // 
             this.columnHeader6.Text = "Địa Chỉ";
+            this.columnHeader6.Width = 121;
             // 
             // columnHeader7
             // 
             this.columnHeader7.Text = "Số Điện Thoại";
+            this.columnHeader7.Width = 106;
             // 
             // columnHeader8
             // 
             this.columnHeader8.Text = "Tiền Cọc";
+            this.columnHeader8.Width = 103;
             // 
             // columnHeader9
             // 
             this.columnHeader9.Text = "Số Tiền Phải Trả";
+            this.columnHeader9.Width = 91;
             // 
             // columnHeader10
             // 
@@ -220,7 +229,7 @@ namespace DoAnQuanLyChoThueOto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1190, 792);
+            this.ClientSize = new System.Drawing.Size(1187, 792);
             this.Controls.Add(this.grThongKe);
             this.Controls.Add(this.pnHead);
             this.Name = "frmDoanhThu";

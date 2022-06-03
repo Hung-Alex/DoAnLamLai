@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DoAnQuanLyChoThueOto.Setting;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,21 +16,23 @@ namespace DoAnQuanLyChoThueOto
         public frmDoanhThu()
         {
             InitializeComponent();
+            this.Font = CaiDat.Fonts;
+            this.ForeColor = CaiDat.Colors;
         }
         void LoadHoaDon(DateTime start,DateTime end)
         {
             txtTongTien.Text = "0 đ";
             lvHoaDon.Items.Clear();
             decimal money = 0;
-            List<DTO.HoaDon> ds = DAO.HoaDonDAO.Instance.GetListHoaDon(start,end);
+            List<DTO.HoaDon> ds = DAO.HoaDonDAO.Instance.GetListHoaDon(start, end);
             foreach (DTO.HoaDon item in ds)
             {
                 ListViewItem itemhoadon = new ListViewItem(item.ThongTinListView());
                 lvHoaDon.Items.Add(itemhoadon);
                 money += item.TongTien;
                 var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
-                txtTongTien.Text= String.Format(info, "{0:c}", money);
-               
+                txtTongTien.Text = String.Format(info, "{0:c}", money);
+
             }
         }
         private void frmDoanhThu_Load(object sender, EventArgs e)
@@ -44,7 +47,7 @@ namespace DoAnQuanLyChoThueOto
 
         private void btnThongKe_Click(object sender, EventArgs e)
         {
-            LoadHoaDon(dtpFrom.Value,dtpTo.Value);
+           LoadHoaDon(dtpFrom.Value, dtpTo.Value);
         }
     }
 }

@@ -30,7 +30,7 @@ namespace DoAnQuanLyChoThueOto
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grChonXe = new System.Windows.Forms.GroupBox();
             this.btnTatCa = new System.Windows.Forms.Button();
             this.flpOto = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -45,7 +45,7 @@ namespace DoAnQuanLyChoThueOto
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.txtTenXe = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.grXeThue = new System.Windows.Forms.GroupBox();
             this.lvDanhSachXeThue = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -57,25 +57,25 @@ namespace DoAnQuanLyChoThueOto
             this.xóaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnThem = new System.Windows.Forms.Button();
             this.btnHuy = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
+            this.grChonXe.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.grXeThue.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // grChonXe
             // 
-            this.groupBox1.Controls.Add(this.btnTatCa);
-            this.groupBox1.Controls.Add(this.flpOto);
-            this.groupBox1.Controls.Add(this.groupBox5);
-            this.groupBox1.Controls.Add(this.groupBox4);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(637, 609);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Danh Sách Oto";
+            this.grChonXe.Controls.Add(this.btnTatCa);
+            this.grChonXe.Controls.Add(this.flpOto);
+            this.grChonXe.Controls.Add(this.groupBox5);
+            this.grChonXe.Controls.Add(this.groupBox4);
+            this.grChonXe.Location = new System.Drawing.Point(12, 12);
+            this.grChonXe.Name = "grChonXe";
+            this.grChonXe.Size = new System.Drawing.Size(637, 609);
+            this.grChonXe.TabIndex = 1;
+            this.grChonXe.TabStop = false;
+            this.grChonXe.Text = "Danh Sách Oto";
             // 
             // btnTatCa
             // 
@@ -187,7 +187,7 @@ namespace DoAnQuanLyChoThueOto
             this.groupBox4.Controls.Add(this.label7);
             this.groupBox4.Location = new System.Drawing.Point(7, 36);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(683, 83);
+            this.groupBox4.Size = new System.Drawing.Size(624, 83);
             this.groupBox4.TabIndex = 0;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Tìm Kiếm";
@@ -209,15 +209,15 @@ namespace DoAnQuanLyChoThueOto
             this.label7.TabIndex = 16;
             this.label7.Text = "Tên Xe";
             // 
-            // groupBox3
+            // grXeThue
             // 
-            this.groupBox3.Controls.Add(this.lvDanhSachXeThue);
-            this.groupBox3.Location = new System.Drawing.Point(655, 12);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(602, 559);
-            this.groupBox3.TabIndex = 7;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Danh Sách Xe Thuê";
+            this.grXeThue.Controls.Add(this.lvDanhSachXeThue);
+            this.grXeThue.Location = new System.Drawing.Point(655, 12);
+            this.grXeThue.Name = "grXeThue";
+            this.grXeThue.Size = new System.Drawing.Size(602, 559);
+            this.grXeThue.TabIndex = 7;
+            this.grXeThue.TabStop = false;
+            this.grXeThue.Text = "Danh Sách Xe Thuê";
             // 
             // lvDanhSachXeThue
             // 
@@ -305,17 +305,17 @@ namespace DoAnQuanLyChoThueOto
             this.ClientSize = new System.Drawing.Size(1260, 631);
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnThem);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.grXeThue);
+            this.Controls.Add(this.grChonXe);
             this.Name = "frmChonXe";
             this.Text = "frmChonXe";
             this.Load += new System.EventHandler(this.frmChonXe_Load);
-            this.groupBox1.ResumeLayout(false);
+            this.grChonXe.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
+            this.grXeThue.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -323,7 +323,7 @@ namespace DoAnQuanLyChoThueOto
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grChonXe;
         private System.Windows.Forms.Button btnTatCa;
         private System.Windows.Forms.FlowLayoutPanel flpOto;
         private System.Windows.Forms.GroupBox groupBox5;
@@ -338,7 +338,7 @@ namespace DoAnQuanLyChoThueOto
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.TextBox txtTenXe;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox grXeThue;
         public System.Windows.Forms.ListView lvDanhSachXeThue;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;

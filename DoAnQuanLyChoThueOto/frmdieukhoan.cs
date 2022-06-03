@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DoAnQuanLyChoThueOto.Setting;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,8 @@ namespace DoAnQuanLyChoThueOto
         public frmdieukhoan()
         {
             InitializeComponent();
+            this.Font = CaiDat.Fonts;
+            this.ForeColor = CaiDat.Colors;
         }
     }
 }
