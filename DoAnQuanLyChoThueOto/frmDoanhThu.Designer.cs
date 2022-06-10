@@ -233,7 +233,7 @@ namespace DoAnQuanLyChoThueOto
             this.Controls.Add(this.grThongKe);
             this.Controls.Add(this.pnHead);
             this.Name = "frmDoanhThu";
-            this.Text = "frmDoanhThu";
+            this.Text = "Doanh Thu";
             this.Load += new System.EventHandler(this.frmDoanhThu_Load);
             this.pnHead.ResumeLayout(false);
             this.pnHead.PerformLayout();

@@ -160,6 +160,18 @@ namespace DoAnQuanLyChoThueOto
             }
         }
 
+        bool CheckInformation()
+        {
+            foreach (Control item in pnThongtin.Controls)
+            {
+                if (string.IsNullOrWhiteSpace(item.Text))
+                {
+                    return false;
+                    
+                }
+            }
+            return true;
+        }
         private void btnTaoHD_Click(object sender, EventArgs e)
         {
             if (lvDanhSachXeThue.Items.Count<=0)
@@ -168,6 +180,13 @@ namespace DoAnQuanLyChoThueOto
             }
             else
             {
+                if (!CheckInformation())
+                {
+                    MessageBox.Show("False");
+
+                }
+                else
+                {
                 DateTime ngaythue = dtpNgayThue.Value;
                 DateTime ngaytra = dtpNgayDuKienTra.Value;
 
@@ -187,6 +206,8 @@ namespace DoAnQuanLyChoThueOto
                 else
                 {
                     MessageBox.Show("False");
+
+                }
 
                 }
 

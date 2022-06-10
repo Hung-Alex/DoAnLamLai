@@ -308,7 +308,7 @@ namespace DoAnQuanLyChoThueOto
             this.Controls.Add(this.grXeThue);
             this.Controls.Add(this.grChonXe);
             this.Name = "frmChonXe";
-            this.Text = "frmChonXe";
+            this.Text = "Chọn Xe";
             this.Load += new System.EventHandler(this.frmChonXe_Load);
             this.grChonXe.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
